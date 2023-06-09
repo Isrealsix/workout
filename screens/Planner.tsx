@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 
-const Planner = () => {
+const PlannerScreen = () => {
   return (
     <View>
       <Text>I am Planner o</Text>
@@ -8,4 +8,4 @@ const Planner = () => {
   )
 }
 
-export default Planner
+export default PlannerScreen

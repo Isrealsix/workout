@@ -1,12 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
-import HomeScreen from './screens/HomeScreen';
+import Navigation from './navigation';
 
 export default function App() {
   return (
-    <View>
-      <HomeScreen />
+    <>
+      <Navigation />
       <StatusBar style="auto" />
-    </View>
+    </>
   );
 }

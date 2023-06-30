@@ -1,12 +1,12 @@
 import { View, Text, Button } from 'react-native'
 
-const PlannerScreen = () => {
+const PlannerScreen:React.FC<any> = ({ navigation }) => {
   return (
     <View>
       <Text>I am Planner o</Text>
       <Button 
         title='Go Home'
-        onPress={() => alert('Go to Home screen')}
+        onPress={() => navigation.push('Home')}
       />
     </View>
   )

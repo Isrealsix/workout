@@ -1,9 +1,9 @@
 import { View, Text, Button } from "react-native";
 import { useNavigation } from "@react-navigation/core";
-import { HomeScreenProps } from "../types";
+import { ScreenProps } from "../types";
 
 const HomeScreen = () => {
-  const navigation = useNavigation<HomeScreenProps>();
+  const navigation = useNavigation<ScreenProps>();
   return (
     <>
       <View>

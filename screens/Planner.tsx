@@ -1,24 +1,9 @@
 import { View, Text, Button } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { useLayoutEffect } from 'react';
-import { RootStackParams } from '../navigation';
-
-
-
-
-type PlannerScreenProps = NativeStackNavigationProp<RootStackParams>;
+import { ScreenProps } from '../types';
 
 const PlannerScreen= () => {
-  const navigation = useNavigation<PlannerScreenProps>();
-  useLayoutEffect(() => {
-    if (navigation) {
-      navigation.setOptions({
-        title: 'Planner Screen',
-      });
-    }
-  }, [navigation]);
-
+  const navigation = useNavigation<ScreenProps>();
   return (
     <View>
       <Text>I am Planner o</Text>

@@ -1,14 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-
 import HomeScreen from "../screens/HomeScreen";
 import PlannerScreen from "../screens/Planner";
-
-
-export type RootStackParams = {
-  HomeScreen: undefined;
-  PlannerScreen: undefined;
-}
+import { RootStackParams } from "../types";
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 

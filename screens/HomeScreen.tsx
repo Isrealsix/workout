@@ -1,16 +1,22 @@
-import { View, Text, Button } from 'react-native';
-import { NativeStackHeaderProps } from '@react-navigation/native-stack';
+import { View, Text, Button } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/core";
+import { RootStackParams } from "../navigation";
 
-const HomeScreen:React.FC<NativeStackHeaderProps> = ({ navigation }) => {
+type HomeScreenProps = NativeStackNavigationProp<RootStackParams>;
+const HomeScreen = () => {
+  const navigation = useNavigation<HomeScreenProps>();
   return (
-    <View>
-      <Text>I am home o</Text>
-      <Button 
-        title='Go to planner'
-        onPress={() => navigation.push('Planner')}
-      />
-    </View>
-  )
-}
+    <>
+      <View>
+        <Text>I am home o</Text>
+        <Button
+          title="Go to planner"
+          onPress={() => navigation.navigate('PlannerScreen')}
+        />
+      </View>
+    </>
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

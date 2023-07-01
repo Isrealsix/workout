@@ -9,7 +9,7 @@ const PlannerScreen= () => {
       <Text>I am Planner o</Text>
       <Button 
         title='Go Home'
-        onPress={() => navigation.push('HomeScreen') }
+        onPress={() => navigation.navigate('HomeScreen') }
       />
     </View>
   )

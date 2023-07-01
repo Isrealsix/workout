@@ -18,7 +18,11 @@ export default function Navigation() {
 function RootNavigator() {
   return (
     <Stack.Navigator initialRouteName="HomeScreen">
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
+      <Stack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{headerShown: false}}
+      />
       {/* <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="PlannerScreen" component={PlannerScreen} /> */}
     </Stack.Navigator>

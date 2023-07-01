@@ -1,6 +1,7 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button } from 'react-native';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 
-const PlannerScreen:React.FC<any> = ({ navigation }) => {
+const PlannerScreen:React.FC<NativeStackHeaderProps> = ({ navigation }) => {
   return (
     <View>
       <Text>I am Planner o</Text>

@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import data from "../data.json";
+import { Workout } from "../types";
 // import { useNavigation } from "@react-navigation/core";
 // import { ScreenProps } from "../types";
 
 const HomeScreen = () => {
   // const navigation = useNavigation<ScreenProps>();
-  const renderItem = ({ item }: { item: any }) => (
+  const renderItem = ({ item }: {item: Workout[0]}) => (
     <View>
       <Text>{`${item.name} - ${item.difficulty}`}</Text>
     </View>

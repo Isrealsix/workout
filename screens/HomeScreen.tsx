@@ -11,7 +11,10 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>New Workoutas</Text>
-      <MontserratText>New Workout</MontserratText>
+      <MontserratText
+        style={{fontSize: 30}}>
+        New Workout
+      </MontserratText>
       <FlatList
         data={data as Array<Workout[number]>}
         renderItem={WorkoutItem}

@@ -7,8 +7,8 @@ const useCachedResources = () => {
     async function loadResourcesAndDataAsync() {
       try {
         await Font.loadAsync({
-          "montserrat": require('../assets/fonts/Monstserrat-Regular.ttf'),
-          "montserrat-bold": require('../assets/fonts/Monstserrat-Bold.ttf')
+          "montserrat": require('../assets/fonts/Montserrat-Regular.ttf'),
+          "montserrat-bold": require('../assets/fonts/Montserrat-Bold.ttf')
         })
       } catch (error) {
         console.warn(error);
@@ -22,4 +22,4 @@ const useCachedResources = () => {
   return isLoadingComplete
 }
 
-export default useCachedResources
+export default useCachedResources;

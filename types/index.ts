@@ -8,7 +8,9 @@ export type RootStackParams = {
 }
 
 type TData = typeof data
-export interface Workout extends TData {}
+type MutatedTData = Array<Omit<TData[number], "difficulty"> & { difficulty: "easy" | "normal" | "hard" }>;
+export interface Workout extends MutatedTData {}
+
 export type ScreenProps = NativeStackNavigationProp<RootStackParams>;
 // export type HomeScreenProps = NativeStackNavigationProp<RootStackParams>;
 // type PlannerScreenProps = NativeStackNavigationProp<RootStackParams>;

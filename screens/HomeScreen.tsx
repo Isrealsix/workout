@@ -6,7 +6,7 @@ import { Workout } from "../types";
 
 const HomeScreen = () => {
   // const navigation = useNavigation<ScreenProps>();
-  const renderItem = ({ item }: {item: Workout[0]}) => (
+  const renderItem = ({ item }: {item: Workout[number]}) => (
     <View>
       <Text>{`${item.name} - ${item.difficulty}`}</Text>
     </View>
@@ -15,7 +15,7 @@ const HomeScreen = () => {
     <View style={styles.container}>
       {/* <Text>I am home o</Text> */}
       <FlatList
-        data={data}
+        data={data as Array<Workout[number]>}
         renderItem={renderItem}
         keyExtractor={(item) => item.slug}
       />

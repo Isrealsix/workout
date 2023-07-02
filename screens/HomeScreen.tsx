@@ -7,7 +7,7 @@ const HomeScreen = () => {
   // const navigation = useNavigation<ScreenProps>();
   const renderItem = ({ item }: { item: any }) => (
     <View>
-      <Text>{item.name}</Text>
+      <Text>{`${item.name} - ${item.difficulty}`}</Text>
     </View>
   );
   return (

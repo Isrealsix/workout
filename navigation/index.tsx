@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import { FontAwesome, Entypo } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -38,8 +38,12 @@ function BottomTabNavigator() {
       component={HomeScreen}
       options={{
         unmountOnBlur: true,
-        tabBarIcon: () => 
-          <Text>Home Icon</Text>
+        tabBarIcon: ({ size, color }) => 
+          <FontAwesome
+            name="home"
+            size={size}
+            color={color}
+          />
       }}
     />
     <BottomTab.Screen
@@ -47,8 +51,12 @@ function BottomTabNavigator() {
       component={PlannerScreen}
       options={{
         unmountOnBlur: true,
-        tabBarIcon: () => 
-          <Text>Planner Icon</Text>
+        tabBarIcon: ({ color, size }) => 
+        <Entypo
+          name="add-to-list"
+          size={size}
+          color={color}
+        />
       }}
     />
   </BottomTab.Navigator>

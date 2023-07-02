@@ -33,7 +33,15 @@ const BottomTab = createBottomTabNavigator<RootStackParams>();
 
 function BottomTabNavigator() {
   return <BottomTab.Navigator initialRouteName="HomeScreen">
-    <BottomTab.Screen name="HomeScreen" component={HomeScreen} />
-    <BottomTab.Screen name="PlannerScreen" component={PlannerScreen} />
+    <BottomTab.Screen
+      name="HomeScreen"
+      component={HomeScreen}
+      options={{ unmountOnBlur: true }}
+    />
+    <BottomTab.Screen
+      name="PlannerScreen"
+      component={PlannerScreen}
+      options={{ unmountOnBlur: true }}
+    />
   </BottomTab.Navigator>
 }

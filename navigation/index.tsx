@@ -1,10 +1,10 @@
+import { Text } from 'react-native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "../screens/HomeScreen";
 import PlannerScreen from "../screens/Planner";
 import { RootStackParams } from "../types";
-
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 export default function Navigation() {
@@ -36,12 +36,20 @@ function BottomTabNavigator() {
     <BottomTab.Screen
       name="HomeScreen"
       component={HomeScreen}
-      options={{ unmountOnBlur: true }}
+      options={{
+        unmountOnBlur: true,
+        tabBarIcon: () => 
+          <Text>Home Icon</Text>
+      }}
     />
     <BottomTab.Screen
       name="PlannerScreen"
       component={PlannerScreen}
-      options={{ unmountOnBlur: true }}
+      options={{
+        unmountOnBlur: true,
+        tabBarIcon: () => 
+          <Text>Planner Icon</Text>
+      }}
     />
   </BottomTab.Navigator>
 }

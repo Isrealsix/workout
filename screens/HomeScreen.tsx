@@ -9,7 +9,6 @@ const HomeScreen = () => {
   // const navigation = useNavigation<ScreenProps>();
   return (
     <View style={styles.container}>
-      {/* <Text>I am home o</Text> */}
       <FlatList
         data={data as Array<Workout[number]>}
         renderItem={WorkoutItem}

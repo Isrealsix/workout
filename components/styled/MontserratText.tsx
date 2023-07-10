@@ -9,5 +9,4 @@ const MontserratText = (props: Text['props']) => {
     />
   )
 }
-
 export default MontserratText

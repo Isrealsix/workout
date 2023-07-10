@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import data from "../data.json";
 import { Workout } from "../types";
 import WorkoutItem from "../components/WorkoutItem";
@@ -6,6 +6,13 @@ import MontserratText from "../components/styled/MontserratText";
 // import { useNavigation } from "@react-navigation/core";
 // import { ScreenProps } from "../types";
 
+const PressableItem = ({item}: {item: Workout[number]}) => (
+  <Pressable
+    onPress={() => alert(`I am here - ${item.name}`)}
+  >
+    <WorkoutItem item={item} />
+  </Pressable>
+);
 const HomeScreen = () => {
   // const navigation = useNavigation<ScreenProps>();
   return (
@@ -17,7 +24,7 @@ const HomeScreen = () => {
       </MontserratText>
       <FlatList
         data={data as Array<Workout[number]>}
-        renderItem={WorkoutItem}
+        renderItem={PressableItem}
         keyExtractor={(item) => item.slug}
       />
     </View>

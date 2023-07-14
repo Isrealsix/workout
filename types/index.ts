@@ -5,6 +5,7 @@ export type RootStackParams = {
   HomeScreen: undefined;
   PlannerScreen: undefined;
   Root: undefined
+  WorkoutDetail: undefined
 }
 
 type TData = typeof data

@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ScreenProps } from '../types';
 import { useEffect } from 'react';
 
-const PlannerScreen= () => {
+const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
   useEffect(() => {
     console.log('mounted');

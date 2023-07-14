@@ -5,13 +5,13 @@ import WorkoutItem from "../components/WorkoutItem";
 
 const PressableItem = ({ item }: { item: Workout[number] }) => {
   const navigation = useNavigation<ScreenProps>();
-  function routeTo (path: string) {
-    navigation.navigate('WorkoutDetail')
+  function routeTo (path: string, slug: any) {
+    navigation.navigate('WorkoutDetail', slug)
   }
   return (
     <Pressable onPress={
       () => {
-        routeTo('WorkoutDetail')
+        routeTo('WorkoutDetail', {slug: item.slug})
       }
     }>
       <WorkoutItem item={item} />

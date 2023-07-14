@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 import MontserratText from "../components/styled/MontserratText";
 
-const WorkoutDetailScreen = () => {
+const WorkoutDetailScreen: React.FC<any> = ({route}) => {
   // const navigation = useNavigation<ScreenProps>();
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Workout Detail!</Text>
+      <Text style={styles.header}>Slug - {route.params.slug}</Text>
       <MontserratText
         style={{fontSize: 30}}>
         New Workout

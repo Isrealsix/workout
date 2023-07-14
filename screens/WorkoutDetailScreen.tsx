@@ -1,7 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
 import MontserratText from "../components/styled/MontserratText";
 
-const WorkoutDetailScreen: React.FC<any> = ({route}) => {
+interface IProps {
+  route: {
+    params: {
+      slug: string
+    }
+  }
+}
+const WorkoutDetailScreen: React.FC<IProps> = ({route}) => {
   // const navigation = useNavigation<ScreenProps>();
   return (
     <View style={styles.container}>

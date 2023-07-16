@@ -5,8 +5,14 @@ import { Workout } from '../types';
 const WORKOUT_KEY = 'workout-data';
 
 export const getWorkouts = async (): Promise<Workout> => {
-  const workouts = await getData('workout-data');
+  const workouts = await getData(WORKOUT_KEY);
   return workouts;
+}
+
+export const getWorkoutBySlug = async (slug: string): Promise<Workout[number]> => {
+ const workouts = await getWorkouts();
+ const [workout] =  workouts.filter((w) => w.slug === slug);
+ return workout;
 }
 
 export const initWorkouts = async (): Promise<boolean> => {

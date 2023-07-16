@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
-import { getWorkouts, initWorkouts } from '../storage/workout';
+import { initWorkouts } from '../storage/workout';
 
 
 const useCachedResources = () => {
@@ -16,8 +16,6 @@ const useCachedResources = () => {
       } catch (error) {
         console.warn(error);
       } finally {
-        const workouts = await getWorkouts();
-        console.log(workouts, 'of meee');
         setIsLoadingComplete(true);
       }
     }

@@ -28,3 +28,11 @@ export const containsKey = async (key: string) => {
     console.log((error as Error).message);
   }
 }
+
+export const removeItem = async (key: string) => {
+  try {
+    await AsyncStorage.removeItem(key);
+  } catch (error) {
+    console.error((error as Error).message);
+  }
+}

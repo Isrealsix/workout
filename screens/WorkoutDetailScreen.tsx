@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
+import PressableText from "../components/styled/PressableText";
 
 interface IProps {
   route?: {
@@ -15,15 +16,7 @@ const WorkoutDetailScreen = ({route}: IProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{workout.name}</Text>
-      <Pressable
-        onPress={() => {
-          alert('opening modal');
-        }}
-      >
-        <Text style={{textDecorationLine: 'underline'}}>
-          Check Sequence
-        </Text>
-      </Pressable>
+      <PressableText text="Check Sequence" />
       {/* <MontserratText
         style={{fontSize: 30}}>
         New Workout

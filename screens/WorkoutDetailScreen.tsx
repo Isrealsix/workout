@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 
 interface IProps {
@@ -14,7 +14,16 @@ const WorkoutDetailScreen = ({route}: IProps) => {
   if (!workout) return;
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>{workout?.name}</Text>
+      <Text style={styles.header}>{workout.name}</Text>
+      <Pressable
+        onPress={() => {
+          alert('opening modal');
+        }}
+      >
+        <Text style={{textDecorationLine: 'underline'}}>
+          Check Sequence
+        </Text>
+      </Pressable>
       {/* <MontserratText
         style={{fontSize: 30}}>
         New Workout

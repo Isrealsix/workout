@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet } from "react-native";
 import MontserratText from "../components/styled/MontserratText";
 import { RootStackParams } from "../types";
+import { useEffect } from "react";
+import { getWorkoutBySlug } from "../storage/workout";
 
 interface IProps {
   route?: {
@@ -11,6 +13,13 @@ interface IProps {
 }
 
 const WorkoutDetailScreen = ({route}: IProps) => {
+  useEffect(() => {
+    async function getData() {
+      const workout = await getWorkoutBySlug(route?.params.slug);
+    }
+
+    getData();
+  }, [])
   // const navigation = useNavigation<ScreenProps>();
   return (
     <View style={styles.container}>

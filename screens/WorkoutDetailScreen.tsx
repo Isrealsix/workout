@@ -16,7 +16,12 @@ const WorkoutDetailScreen = ({route}: IProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{workout.name}</Text>
-      <PressableText text="Check Sequence" />
+      <PressableText
+        onPress={() => {
+          alert('opening modal');
+        }}
+        text="Check Sequence"
+      />
       {/* <MontserratText
         style={{fontSize: 30}}>
         New Workout

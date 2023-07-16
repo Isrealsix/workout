@@ -7,9 +7,6 @@ const PressableText: React.FC<IProps> = (props) => {
   return (
     <Pressable
       {...props}
-      onPress={() => {
-        alert('opening modal');
-      }}
     >
       <Text style={{textDecorationLine: 'underline'}}>
         {props.text}

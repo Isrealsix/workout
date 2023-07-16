@@ -1,8 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import MontserratText from "../components/styled/MontserratText";
-import { RootStackParams } from "../types";
-import { useEffect } from "react";
-import { getWorkoutBySlug } from "../storage/workout";
+import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 
 interface IProps {
   route?: {
@@ -13,21 +11,14 @@ interface IProps {
 }
 
 const WorkoutDetailScreen = ({route}: IProps) => {
-  useEffect(() => {
-    async function getData() {
-      const workout = await getWorkoutBySlug(route?.params.slug);
-    }
-
-    getData();
-  }, [])
-  // const navigation = useNavigation<ScreenProps>();
+  const workout = useWorkoutBySlug(route?.params.slug)
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Slug - {route?.params.slug}</Text>
-      <MontserratText
+      <Text style={styles.header}>{workout?.name}</Text>
+      {/* <MontserratText
         style={{fontSize: 30}}>
         New Workout
-      </MontserratText>
+      </MontserratText> */}
 
     </View>
   );

@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet } from "react-native";
-import MontserratText from "../components/styled/MontserratText";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 
 interface IProps {
@@ -11,7 +10,8 @@ interface IProps {
 }
 
 const WorkoutDetailScreen = ({route}: IProps) => {
-  const workout = useWorkoutBySlug(route?.params.slug)
+  const workout = useWorkoutBySlug(route?.params.slug);
+  if (!workout) return;
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{workout?.name}</Text>

@@ -1,21 +1,10 @@
-import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import { Workout } from "../types";
 import MontserratText from "../components/styled/MontserratText";
 import PressableItem from "../utils/PressableItem";
-import { getWorkouts } from "../storage/workout";
+import { useWorkouts } from "../hooks/useWorkouts";
 
 const HomeScreen = () => {
-  const [workouts, setWorkouts] = useState<Workout>([]);
-  
-  useEffect(() => {
-    async function getData () {
-      const _workouts = await getWorkouts();
-      setWorkouts(_workouts);
-    }
-
-    getData();
-  }, [])
+  const workouts = useWorkouts();
 
   return (
     <View style={styles.container}>

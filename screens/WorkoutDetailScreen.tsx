@@ -1,18 +1,20 @@
 import { View, Text, StyleSheet } from "react-native";
 import MontserratText from "../components/styled/MontserratText";
+import { RootStackParams } from "../types";
 
 interface IProps {
-  route: {
+  route?: {
     params: {
       slug: string
     }
   }
 }
-const WorkoutDetailScreen: React.FC<IProps> = ({route}) => {
+
+const WorkoutDetailScreen = ({route}: IProps) => {
   // const navigation = useNavigation<ScreenProps>();
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Slug - {route.params.slug}</Text>
+      <Text style={styles.header}>Slug - {route?.params.slug}</Text>
       <MontserratText
         style={{fontSize: 30}}>
         New Workout

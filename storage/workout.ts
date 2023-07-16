@@ -4,7 +4,7 @@ import { Workout } from '../types';
 
 const WORKOUT_KEY = 'workout-data';
 
-export const getWorkouts = async (): Promise<Workout[]> => {
+export const getWorkouts = async (): Promise<Workout> => {
   const workouts = await getData('workout-data');
   return workouts;
 }

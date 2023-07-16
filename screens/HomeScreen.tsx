@@ -1,17 +1,28 @@
+import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import data from "../data.json";
 import { Workout } from "../types";
 import MontserratText from "../components/styled/MontserratText";
 import PressableItem from "../utils/PressableItem";
+import { getWorkouts } from "../storage/workout";
 
 const HomeScreen = () => {
-  // const navigation = useNavigation<ScreenProps>();
+  const [workouts, setWorkouts] = useState<Workout>([]);
+  
+  useEffect(() => {
+    async function getData () {
+      const _workouts = await getWorkouts();
+      setWorkouts(_workouts);
+    }
+
+    getData();
+  }, [])
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>New Workoutas</Text>
       <MontserratText style={{ fontSize: 30 }}>New Workout</MontserratText>
       <FlatList
-        data={data as Array<Workout[number]>}
+        data={workouts}
         renderItem={(items) => <PressableItem {...items} />}
         keyExtractor={(item) => item.slug}
       />

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View, Text, StyleSheet,Modal } from "react-native";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 import PressableText from "../components/styled/PressableText";
@@ -11,23 +12,26 @@ interface IProps {
 }
 
 const WorkoutDetailScreen = ({route}: IProps) => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
   const workout = useWorkoutBySlug(route?.params.slug);
   if (!workout) return;
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{workout.name}</Text>
       <PressableText
-        onPress={() => {
-          alert('opening modal');
-        }}
+        onPress={() => setIsModalVisible(true)}
         text="Check Sequence"
       />
       <Modal
-        visible={false}
-        transparent={true}
-        animationType="none"
+        visible={isModalVisible}
+        transparent={false}
+        animationType="slide"
       >
-        <Text>Hello There!</Text>
+        <Text style={{ marginBottom: 100 }}>Hello There!</Text>
+      <PressableText
+        onPress={() => setIsModalVisible(false)}
+        text="Close"
+      />
       </Modal>
       {/* <MontserratText
         style={{fontSize: 30}}>

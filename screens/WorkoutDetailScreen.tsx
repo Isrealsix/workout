@@ -27,11 +27,13 @@ const WorkoutDetailScreen = ({route}: IProps) => {
         transparent={false}
         animationType="slide"
       >
+      <View style={styles.centerView}>
         <Text style={{ marginBottom: 100 }}>Hello There!</Text>
-      <PressableText
-        onPress={() => setIsModalVisible(false)}
-        text="Close"
-      />
+        <PressableText
+          onPress={() => setIsModalVisible(false)}
+          text="Close"
+        />
+      </View>
       </Modal>
       {/* <MontserratText
         style={{fontSize: 30}}>
@@ -52,6 +54,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: 'bold',
     // fontFamily: 'montserrat-bold'
+  },
+  centerView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+
   }
 });
 export default WorkoutDetailScreen;

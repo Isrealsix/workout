@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,Modal } from "react-native";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 import PressableText from "../components/styled/PressableText";
 
@@ -22,6 +22,13 @@ const WorkoutDetailScreen = ({route}: IProps) => {
         }}
         text="Check Sequence"
       />
+      <Modal
+        visible={false}
+        transparent={true}
+        animationType="none"
+      >
+        <Text>Hello There!</Text>
+      </Modal>
       {/* <MontserratText
         style={{fontSize: 30}}>
         New Workout

@@ -20,7 +20,9 @@ const Modal: React.FC<IProps> = ({ activator: Activator, children }) => {
         animationType="slide"
       >
         <View style={styles.centerView}>
-          {children}
+          <View style={styles.contentView}>
+            {children}
+          </View>
           {/* <Text style={{ marginBottom: 100 }}>Hello There!</Text> */}
           <PressableText
             onPress={() => setIsModalVisible(false)}
@@ -43,6 +45,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  contentView: {
+    marginBottom: 20
+  }
 });
 
 export default Modal;

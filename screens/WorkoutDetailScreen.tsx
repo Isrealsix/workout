@@ -4,6 +4,7 @@ import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 import Modal from "../components/styled/Modal";
 import PressableText from "../components/styled/PressableText";
 import { formatSec } from "../utils/time";
+import { FontAwesome } from "@expo/vector-icons";
 
 interface IProps {
   route?: {
@@ -26,10 +27,15 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
         )}
       >
         <View>
-          {workout.sequence.map((item) => (
-            <Text key={item.slug}>
-              {item.name} | {item.type} | {formatSec(item.duration)}
-            </Text>
+          {workout.sequence.map((item, idx) => (
+            <View key={item.slug} style={styles.sequenceItem}>
+              <Text>
+                {item.name} | {item.type} | {formatSec(item.duration)}
+              </Text>
+              {idx !== workout.sequence.length - 1 && (
+                <FontAwesome name="arrow-down" size={24} />
+              )}
+            </View>
           ))}
         </View>
       </Modal>
@@ -68,6 +74,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: "bold",
     // fontFamily: 'montserrat-bold'
+  },
+  sequenceItem: {
+    alignItems: "center",
   },
 });
 export default WorkoutDetailScreen;

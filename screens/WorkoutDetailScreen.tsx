@@ -6,6 +6,7 @@ import PressableText from "../components/styled/PressableText";
 import { formatSec } from "../utils/time";
 import { FontAwesome } from "@expo/vector-icons";
 import WorkoutItem from "../components/WorkoutItem";
+import { SequenceItem } from "../types";
 
 interface IProps {
   route?: {
@@ -16,7 +17,7 @@ interface IProps {
 }
 
 const WorkoutDetailScreen = ({ route }: IProps) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [sequence, setSequence] = useState<SequenceItem[]>([]);
   const workout = useWorkoutBySlug(route?.params.slug);
   if (!workout) return;
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { View, Text, StyleSheet,Modal } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
-import PressableText from "../components/styled/PressableText";
+import Modal from "../components/styled/Modal";
 
 interface IProps {
   route?: {
@@ -18,7 +18,8 @@ const WorkoutDetailScreen = ({route}: IProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{workout.name}</Text>
-      <PressableText
+      <Modal />
+      {/* <PressableText
         onPress={() => setIsModalVisible(true)}
         text="Check Sequence"
       />
@@ -29,13 +30,13 @@ const WorkoutDetailScreen = ({route}: IProps) => {
       >
       <View style={styles.centerView}>
         <Text style={{ marginBottom: 100 }}>Hello There!</Text>
-        <PressableText
+        {/* <PressableText
           onPress={() => setIsModalVisible(false)}
           text="Close"
         />
       </View>
       </Modal>
-      {/* <MontserratText
+      <MontserratText
         style={{fontSize: 30}}>
         New Workout
       </MontserratText> */}
@@ -54,12 +55,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: 'bold',
     // fontFamily: 'montserrat-bold'
-  },
-  centerView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-
   }
 });
 export default WorkoutDetailScreen;

@@ -3,35 +3,35 @@ import { View, Text, StyleSheet } from "react-native";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 import Modal from "../components/styled/Modal";
 import PressableText from "../components/styled/PressableText";
+import { formatSec } from "../utils/time";
 
 interface IProps {
   route?: {
     params: {
-      slug: string
-    }
-  }
+      slug: string;
+    };
+  };
 }
 
-const WorkoutDetailScreen = ({route}: IProps) => {
-  const [isModalVisible, setIsModalVisible] = useState(false)
+const WorkoutDetailScreen = ({ route }: IProps) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const workout = useWorkoutBySlug(route?.params.slug);
   if (!workout) return;
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{workout.name}</Text>
       <Modal
-        activator={({handleOpen}) => 
-          <PressableText
-            onPress={handleOpen}
-            text="Check Sequence"
-          />
-        }
+        activator={({ handleOpen }) => (
+          <PressableText onPress={handleOpen} text="Check Sequence" />
+        )}
       >
-        <Text>Hello Motto</Text>
-      </Modal>
-
-      <Modal>
-        <Text>Custom testing</Text>
+        <View>
+          {workout.sequence.map((item) => (
+            <Text key={item.slug}>
+              {item.name} | {item.type} | {formatSec(item.duration)}
+            </Text>
+          ))}
+        </View>
       </Modal>
       {/* <PressableText
         onPress={() => setIsModalVisible(true)}
@@ -54,7 +54,6 @@ const WorkoutDetailScreen = ({route}: IProps) => {
         style={{fontSize: 30}}>
         New Workout
       </MontserratText> */}
-
     </View>
   );
 };
@@ -62,13 +61,13 @@ const WorkoutDetailScreen = ({route}: IProps) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    flex: 1
+    flex: 1,
   },
   header: {
     fontSize: 20,
     marginBottom: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     // fontFamily: 'montserrat-bold'
-  }
+  },
 });
 export default WorkoutDetailScreen;

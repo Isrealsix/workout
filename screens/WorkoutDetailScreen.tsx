@@ -19,6 +19,10 @@ interface IProps {
 const WorkoutDetailScreen = ({ route }: IProps) => {
   const [sequence, setSequence] = useState<SequenceItem[]>([]);
   const workout = useWorkoutBySlug(route?.params.slug);
+
+  const addItemToSequence = (idx: number) => {
+    setSequence([...sequence, workout!.sequence[idx]]);
+  };
   if (!workout) return;
   return (
     <View style={styles.container}>
@@ -48,10 +52,13 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
         </Modal>
       </WorkoutItem>
       <View>
-        <FontAwesome
-          name="play-circle-o"
-          size={100}
-        />
+        {sequence.length === 0 && (
+          <FontAwesome
+            name="play-circle-o"
+            size={100}
+            onPress={() => addItemToSequence(0)}
+          />
+        )}
       </View>
     </View>
   );

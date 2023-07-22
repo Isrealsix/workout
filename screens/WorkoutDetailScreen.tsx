@@ -5,6 +5,7 @@ import Modal from "../components/styled/Modal";
 import PressableText from "../components/styled/PressableText";
 import { formatSec } from "../utils/time";
 import { FontAwesome } from "@expo/vector-icons";
+import WorkoutItem from "../components/WorkoutItem";
 
 interface IProps {
   route?: {
@@ -20,25 +21,31 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
   if (!workout) return;
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>{workout.name}</Text>
-      <Modal
-        activator={({ handleOpen }) => (
-          <PressableText onPress={handleOpen} text="Check Sequence" />
-        )}
+      <WorkoutItem
+        item={workout}
+        childStyles={{
+          marginTop: 10,
+        }}
       >
-        <View>
-          {workout.sequence.map((item, idx) => (
-            <View key={item.slug} style={styles.sequenceItem}>
-              <Text>
-                {item.name} | {item.type} | {formatSec(item.duration)}
-              </Text>
-              {idx !== workout.sequence.length - 1 && (
-                <FontAwesome name="arrow-down" size={24} />
-              )}
-            </View>
-          ))}
-        </View>
-      </Modal>
+        <Modal
+          activator={({ handleOpen }) => (
+            <PressableText onPress={handleOpen} text="Check Sequence" />
+          )}
+        >
+          <View>
+            {workout.sequence.map((item, idx) => (
+              <View key={item.slug} style={styles.sequenceItem}>
+                <Text>
+                  {item.name} | {item.type} | {formatSec(item.duration)}
+                </Text>
+                {idx !== workout.sequence.length - 1 && (
+                  <FontAwesome name="arrow-down" size={24} />
+                )}
+              </View>
+            ))}
+          </View>
+        </Modal>
+      </WorkoutItem>
       {/* <PressableText
         onPress={() => setIsModalVisible(true)}
         text="Check Sequence"

@@ -1,13 +1,23 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { Workout } from "../types";
 import { formatSec, secToMin } from "../utils/time";
 
-const WorkoutItem = ({ item }: { item: Workout[number] }) => {
+interface IProps {
+  item: Workout[number];
+  children?: React.ReactNode;
+  childStyles?: StyleProp<ViewStyle>;
+}
+const WorkoutItem: React.FC<IProps> = ({
+  item,
+  children,
+  childStyles = {},
+}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.name}>{item.name}</Text>
       <Text style={styles.duration}>Duration: {formatSec(item.duration)}</Text>
       <Text style={styles.difficulty}>Difficulty: {item.difficulty}</Text>
+      {children && <View style={childStyles}>{children}</View>}
     </View>
   );
 };
@@ -19,7 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff",
   },
   name: {
     fontSize: 15,

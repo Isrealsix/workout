@@ -26,8 +26,13 @@ const WorkoutDetailScreen = ({route}: IProps) => {
             text="Check Sequence"
           />
         }
-      />
-      <Modal />
+      >
+        <Text>Hello Motto</Text>
+      </Modal>
+
+      <Modal>
+        <Text>Custom testing</Text>
+      </Modal>
       {/* <PressableText
         onPress={() => setIsModalVisible(true)}
         text="Check Sequence"

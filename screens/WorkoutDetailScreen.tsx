@@ -20,9 +20,9 @@ const WorkoutDetailScreen = ({route}: IProps) => {
     <View style={styles.container}>
       <Text style={styles.header}>{workout.name}</Text>
       <Modal
-        activator={() => 
+        activator={({handleOpen}) => 
           <PressableText
-            onPress={() => {alert('Opening')}}
+            onPress={handleOpen}
             text="Check Sequence"
           />
         }

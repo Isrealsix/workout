@@ -2,9 +2,13 @@ import { useState } from "react";
 import { View, Text, StyleSheet, Modal as DefaultModal } from "react-native";
 import PressableText from "./PressableText";
 
-interface IProps {
-  activator?: any;
+interface IActivator {
+  handleOpen: () => void
 }
+interface IProps {
+  activator?: React.FC<IActivator>;
+}
+
 const Modal: React.FC<IProps> = ({ activator: Activator }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   return (
@@ -23,7 +27,9 @@ const Modal: React.FC<IProps> = ({ activator: Activator }) => {
         </View>
       </DefaultModal>
       {Activator ? (
-        <Activator />
+        <Activator
+          handleOpen={() => setIsModalVisible(true)}
+        />
       ) : (
         <PressableText onPress={() => setIsModalVisible(true)} text="Open" />
       )}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 import Modal from "../components/styled/Modal";
@@ -18,11 +18,30 @@ interface IProps {
 
 const WorkoutDetailScreen = ({ route }: IProps) => {
   const [sequence, setSequence] = useState<SequenceItem[]>([]);
+  const [countdown, setCountDown] = useState(-1);
+  const [trackerIdx, setTrackerIdx] = useState(-1);
+
   const workout = useWorkoutBySlug(route?.params.slug);
+
+  useEffect(() => {
+    if (trackerIdx == -1) return;
+    setCountDown(workout!.sequence[trackerIdx].duration);
+
+    const interval = setInterval(() => {
+      setCountDown((prevCount) => {
+        console.log(prevCount);
+        return prevCount - 1;
+      })
+    }, 100)
+    return () => clearInterval(interval);
+  }, [trackerIdx]);
 
   const addItemToSequence = (idx: number) => {
     setSequence([...sequence, workout!.sequence[idx]]);
+    setTrackerIdx(idx);
   };
+
+
   if (!workout) return;
   return (
     <View style={styles.container}>

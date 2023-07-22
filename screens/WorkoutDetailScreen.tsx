@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
 import Modal from "../components/styled/Modal";
+import PressableText from "../components/styled/PressableText";
 
 interface IProps {
   route?: {
@@ -18,6 +19,14 @@ const WorkoutDetailScreen = ({route}: IProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{workout.name}</Text>
+      <Modal
+        activator={() => 
+          <PressableText
+            onPress={() => {alert('Opening')}}
+            text="Check Sequence"
+          />
+        }
+      />
       <Modal />
       {/* <PressableText
         onPress={() => setIsModalVisible(true)}

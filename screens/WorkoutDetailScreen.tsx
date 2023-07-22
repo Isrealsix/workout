@@ -46,27 +46,12 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
           </View>
         </Modal>
       </WorkoutItem>
-      {/* <PressableText
-        onPress={() => setIsModalVisible(true)}
-        text="Check Sequence"
-      />
-      <Modal
-        visible={isModalVisible}
-        transparent={false}
-        animationType="slide"
-      >
-      <View style={styles.centerView}>
-        <Text style={{ marginBottom: 100 }}>Hello There!</Text>
-        {/* <PressableText
-          onPress={() => setIsModalVisible(false)}
-          text="Close"
+      <View>
+        <FontAwesome
+          name="play-circle-o"
+          size={100}
         />
       </View>
-      </Modal>
-      <MontserratText
-        style={{fontSize: 30}}>
-        New Workout
-      </MontserratText> */}
     </View>
   );
 };

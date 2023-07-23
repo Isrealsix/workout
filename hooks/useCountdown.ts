@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const useCountdown = (idx: number, initialCount: number) => {
+const useCountdown = (idx: number, initialCount: number = -1) => {
   const intervalRef = useRef<NodeJS.Timer>();
   const [countDown, setCountDown] = useState(initialCount);
   const [isRunning, setIsRunning] = useState(false);

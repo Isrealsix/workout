@@ -7,6 +7,7 @@ import { formatSec } from "../utils/time";
 import { FontAwesome } from "@expo/vector-icons";
 import WorkoutItem from "../components/WorkoutItem";
 import { SequenceItem } from "../types";
+import useCountdown from "../hooks/useCountdown";
 
 interface IProps {
   route?: {
@@ -18,23 +19,13 @@ interface IProps {
 
 const WorkoutDetailScreen = ({ route }: IProps) => {
   const [sequence, setSequence] = useState<SequenceItem[]>([]);
-  const [countdown, setCountDown] = useState(-1);
   const [trackerIdx, setTrackerIdx] = useState(-1);
-
+  
   const workout = useWorkoutBySlug(route?.params.slug);
-
-  useEffect(() => {
-    if (trackerIdx == -1) return;
-    setCountDown(workout!.sequence[trackerIdx].duration);
-
-    const interval = setInterval(() => {
-      setCountDown((prevCount) => {
-        console.log(prevCount);
-        return prevCount - 1;
-      })
-    }, 100)
-    return () => clearInterval(interval);
-  }, [trackerIdx]);
+  const countDown = useCountdown(
+    trackerIdx,
+    trackerIdx >= 0 ? sequence[trackerIdx].duration : -1
+  )
 
   const addItemToSequence = (idx: number) => {
     setSequence([...sequence, workout!.sequence[idx]]);

@@ -8,7 +8,6 @@ const useCountdown = (idx: number, initialCount: number) => {
 
     intervalRef.current = setInterval(() => {
       setCountDown((prevCount) => {
-        console.log(prevCount);
         return prevCount - 1;
       });
     }, 100);

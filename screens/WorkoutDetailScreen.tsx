@@ -20,18 +20,24 @@ interface IProps {
 const WorkoutDetailScreen = ({ route }: IProps) => {
   const [sequence, setSequence] = useState<SequenceItem[]>([]);
   const [trackerIdx, setTrackerIdx] = useState(-1);
-  
+
   const workout = useWorkoutBySlug(route?.params.slug);
   const countDown = useCountdown(
     trackerIdx,
     trackerIdx >= 0 ? sequence[trackerIdx].duration : -1
-  )
+  );
+
+  useEffect(() => {
+    console.log(countDown);
+    if (!workout) return;
+    if (trackerIdx === workout.sequence.length - 1) return;
+    if (countDown === 0) addItemToSequence(trackerIdx + 1)
+  }, [countDown])
 
   const addItemToSequence = (idx: number) => {
     setSequence([...sequence, workout!.sequence[idx]]);
     setTrackerIdx(idx);
   };
-
 
   if (!workout) return;
   return (

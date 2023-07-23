@@ -70,11 +70,25 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
         </Modal>
       </WorkoutItem>
       <View style={styles.centerView}>
-        {sequence.length === 0 && (
+        {sequence.length === 0 ? (
           <FontAwesome
             name="play-circle-o"
             size={100}
             onPress={() => addItemToSequence(0)}
+          />
+        ) : isRunning ? (
+          <FontAwesome name="stop-circle-o" size={100} onPress={() => stop()} />
+        ) : (
+          <FontAwesome
+            name="play-circle-o"
+            size={100}
+            onPress={() => {
+              if (hasReachedEnd) {
+                console.log("Restart counter");
+              } else {
+                start(countDown);
+              }
+            }}
           />
         )}
         {sequence.length > 0 && countDown >= 0 && (

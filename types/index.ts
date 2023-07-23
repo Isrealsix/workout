@@ -12,6 +12,8 @@ type TData = typeof data
 type MutatedTData = Array<Omit<TData[number], "difficulty"> & { difficulty: "easy" | "normal" | "hard" }>;
 export type SequenceItem = TData[number]['sequence'][number]
 
+
+export type SequenceType = "exercise" | "stretch" | "break"
 export interface Workout extends MutatedTData {}
 
 export type ScreenProps = NativeStackNavigationProp<RootStackParams>;

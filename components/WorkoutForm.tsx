@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
+import PressableText from "./styled/PressableText";
 
-const WorkoutForm = () => {
+export interface IExerciseForm {
+  name: string,
+  duration: string
+}
+interface IProps {
+  onSubmit: (form: IExerciseForm) => void
+}
+const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
   const [form, setForm] = useState({
     name: '',
     duration: ''
@@ -12,8 +20,6 @@ const WorkoutForm = () => {
       ...prevForm,
       [name]: text
     }))
-
-    console.log(form);
   }
   return (
     <View style={styles.container}>
@@ -28,6 +34,10 @@ const WorkoutForm = () => {
           value={form.duration}
           style={styles.input}
           onChangeText={handleTextChange('duration')}
+        />
+        <PressableText
+          text="Submit"
+          onPress={() => onSubmit(form)}
         />
       </View>
     </View>

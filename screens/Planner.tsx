@@ -1,11 +1,14 @@
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenProps } from '../types';
-import WorkoutForm from '../components/WorkoutForm';
+import WorkoutForm, { IExerciseForm } from '../components/WorkoutForm';
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
   
+  const handleFormSubmit = (form: IExerciseForm) => {
+    alert(`${form.name} - ${form.duration}`)
+  }
 
   return (
     <View style={styles.container}>
@@ -14,7 +17,9 @@ const PlannerScreen = () => {
         title='Go Home'
         onPress={() => navigation.navigate('HomeScreen') }
       /> */}
-      <WorkoutForm />
+      <WorkoutForm
+        onSubmit={handleFormSubmit}
+      />
     </View>
   )
 }

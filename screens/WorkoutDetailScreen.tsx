@@ -39,6 +39,9 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
   };
 
   if (!workout) return;
+
+  const hasReachedEnd =
+    sequence.length === workout.sequence.length && countDown === 0;
   return (
     <View style={styles.container}>
       <WorkoutItem
@@ -80,6 +83,15 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
           </View>
         )}
       </View>
+      <View>
+        <Text>
+          {sequence.length === 0
+            ? "Prepare"
+            : hasReachedEnd
+            ? "Great Job!"
+            : sequence[trackerIdx].name}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -99,10 +111,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   centerView: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    marginBottom: 20
-  }
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginBottom: 20,
+  },
 });
 export default WorkoutDetailScreen;

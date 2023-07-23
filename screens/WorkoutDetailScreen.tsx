@@ -32,7 +32,12 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
   }, [countDown]);
 
   const addItemToSequence = (idx: number) => {
-    const newSequence = [...sequence, workout!.sequence[idx]];
+    let newSequence = [];
+    if (idx > 0 ) {
+      newSequence = [...sequence, workout!.sequence[idx]];
+    } else {
+      newSequence = [workout!.sequence[idx]];
+    }
     setSequence(newSequence);
     setTrackerIdx(idx);
     start(newSequence[idx].duration);
@@ -89,7 +94,7 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
               size={100}
               onPress={() => {
                 if (hasReachedEnd) {
-                  console.log("Restart counter");
+                  addItemToSequence(0);
                 } else {
                   start(countDown);
                 }

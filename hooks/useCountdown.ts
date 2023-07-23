@@ -3,9 +3,11 @@ import { useEffect, useRef, useState } from "react";
 const useCountdown = (idx: number, initialCount: number) => {
   const intervalRef = useRef<NodeJS.Timer>();
   const [countDown, setCountDown] = useState(initialCount);
+  const [isRunning, setIsRunning] = useState(false);
+
   useEffect(() => {
     if (idx == -1) return;
-
+    setIsRunning(true);
     intervalRef.current = setInterval(() => {
       setCountDown((prevCount) => {
         return prevCount - 1;
@@ -20,15 +22,16 @@ const useCountdown = (idx: number, initialCount: number) => {
 
   useEffect(() => {
     if (countDown === 0) cleanup();
-  }, [countDown])
+  }, [countDown]);
 
   const cleanup = () => {
     if (intervalRef.current) {
+      setIsRunning(false);
       clearInterval(intervalRef.current);
-      intervalRef.current = undefined
+      intervalRef.current = undefined;
     }
-  }
-  return countDown;
+  };
+  return { countDown, isRunning, stop: cleanup };
 };
 
 export default useCountdown;

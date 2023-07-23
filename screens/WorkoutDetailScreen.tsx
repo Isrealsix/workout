@@ -22,6 +22,7 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
   const [trackerIdx, setTrackerIdx] = useState(-1);
 
   const workout = useWorkoutBySlug(route?.params.slug);
+  const startupSeq = ['3', '2', '1', 'Go'];
   const { countDown, isRunning, start, stop } = useCountdown(trackerIdx);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
     }
     setSequence(newSequence);
     setTrackerIdx(idx);
-    start(newSequence[idx].duration);
+    start(newSequence[idx].duration + startupSeq.length);
   };
 
   if (!workout) return;

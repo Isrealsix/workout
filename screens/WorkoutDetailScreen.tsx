@@ -83,8 +83,8 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
           </View>
         )}
       </View>
-      <View>
-        <Text>
+      <View style={{ alignItems: "center" }}>
+        <Text style={{ fontSize: 60, fontWeight: "bold" }}>
           {sequence.length === 0
             ? "Prepare"
             : hasReachedEnd

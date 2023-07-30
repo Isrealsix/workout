@@ -17,7 +17,6 @@ const ExerciseForm: React.FC<IProps> = ({ onSubmit }) => {
   const selectionItems = ["exercise", "break", "stretch"];
   return (
     <View style={styles.container}>
-      <Text>Excersice form</Text>
       <View>
         <View style={styles.rowContainer}>
           <Controller
@@ -98,7 +97,8 @@ const ExerciseForm: React.FC<IProps> = ({ onSubmit }) => {
           />
         </View>
         <PressableText
-          text="Submit"
+        style={{marginTop: 10}}
+          text="Add Exercise"
           onPress={handleSubmit((data) => {
             onSubmit(data as IExerciseForm);
             console.log(data);

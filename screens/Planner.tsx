@@ -6,6 +6,7 @@ import ExerciseForm, { IExerciseForm } from "../components/ExerciseForm";
 import slugify from "slugify";
 import ExerciseItem from "../components/ExerciseItem";
 import PressableText from "../components/styled/PressableText";
+import Modal from "../components/styled/Modal";
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
@@ -29,18 +30,35 @@ const PlannerScreen = () => {
       <FlatList
         data={seqItems}
         keyExtractor={(item) => item.slug}
-        renderItem={({item, index}) => <ExerciseItem item={item}>
-          <PressableText
-            text="Remove"
-            onPressIn={() => {
-              const items = [...seqItems];
-              items.splice(index, 1);
-              setSeqItems(items);
-            }}
-          />
-        </ExerciseItem>}
+        renderItem={({ item, index }) => (
+          <ExerciseItem item={item}>
+            <PressableText
+              text="Remove"
+              onPressIn={() => {
+                const items = [...seqItems];
+                items.splice(index, 1);
+                setSeqItems(items);
+              }}
+            />
+          </ExerciseItem>
+        )}
       />
       <ExerciseForm onSubmit={handleFormSubmit} />
+      <View>
+        <Modal
+          activator={({ handleOpen }) => (
+            <PressableText
+              style={{ marginTop: 15 }}
+              text="Create Workout"
+              onPress={handleOpen}
+            />
+          )}
+        >
+          <View>
+            <Text>form goes here</Text>
+          </View>
+        </Modal>
+      </View>
     </View>
   );
 };

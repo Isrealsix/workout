@@ -5,14 +5,13 @@ import useCachedResources from './hooks/useCachedResources';
 
 export default function App() {
   const isLoaded = useCachedResources();
-  const theme = useColorScheme();
+  const colorScheme = useColorScheme();
 
-  console.log(theme);
   if (!isLoaded) return null;
   console.log(isLoaded);
   return (
     <>
-      <Navigation />
+      <Navigation colorScheme={colorScheme} />
       <StatusBar style="auto" />
     </>
   );

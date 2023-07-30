@@ -10,7 +10,7 @@ interface IProps {
   onSubmit: (form: IExerciseForm) => void;
 }
 const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
-  const { control } = useForm();
+  const { control, handleSubmit } = useForm();
 
   return (
     <View style={styles.container}>
@@ -29,6 +29,13 @@ const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
               style={styles.input}
             />
           )}
+        />
+        <PressableText
+          text="Submit"
+          onPress={handleSubmit((data) => {
+            onSubmit(data as IExerciseForm)
+            console.log(data);
+          })}
         />
       </View>
     </View>

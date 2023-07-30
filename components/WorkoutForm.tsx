@@ -13,7 +13,7 @@ interface IProps {
 }
 const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
   const { control, handleSubmit } = useForm();
-
+  const [isSelectionOn, setSelectionOn] = useState(false);
   return (
     <View style={styles.container}>
       <Text>Excersice form</Text>
@@ -70,12 +70,21 @@ const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
             }}
             name="type"
             render={({ field: { onChange, value } }) => (
-              <TextInput
-                onChangeText={onChange}
-                value={value}
-                style={styles.input}
-                placeholder="Type"
-              />
+              <View style={{ flex: 1 }}>
+                {isSelectionOn ? (
+                  <View>
+                    <PressableText text="exercise" onPressIn={() => setSelectionOn(false)} />
+                    <PressableText text="break" onPressIn={() => setSelectionOn(false)} />
+                    <PressableText text="stretch" onPressIn={() => setSelectionOn(false)} />
+                  </View>
+                ) : (
+                  <TextInput
+                    onPressIn={() => setSelectionOn(true)}
+                    style={styles.input}
+                    placeholder="Type"
+                  />
+                )}
+              </View>
             )}
           />
         </View>

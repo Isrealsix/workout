@@ -17,7 +17,7 @@ interface IProps {
   };
 }
 
-const WorkoutDetailScreen = ({ route }: IProps) => {
+const WorkoutDetailScreen: React.FC<IProps> = ({ route }) => {
   const [sequence, setSequence] = useState<SequenceItem[]>([]);
   const [trackerIdx, setTrackerIdx] = useState(-1);
 
@@ -32,7 +32,7 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
     if (countDown === 0) addItemToSequence(trackerIdx + 1);
   }, [countDown]);
 
-  const addItemToSequence = (idx: number) => {
+  function addItemToSequence (idx: number) {
     let newSequence = [];
     if (idx > 0) {
       newSequence = [...sequence, workout!.sequence[idx]];
@@ -44,7 +44,7 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
     start(newSequence[idx].duration + startupSeq.length);
   };
 
-  if (!workout) return;
+  if (!workout) return null;
 
   const hasReachedEnd =
     sequence.length === workout.sequence.length && countDown === 0;

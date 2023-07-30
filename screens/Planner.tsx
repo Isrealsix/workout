@@ -28,13 +28,21 @@ const PlannerScreen = () => {
 
   const handleWorkoutSubmit = (form: IWorkoutForm) => {
     console.log(form);
-    const workout = {
-      name: form.name,
-      slug: slugify(form.name + " " + Date.now(), { lower: true })
-    }
+    if (seqItems.length > 0) {
+      const duration = seqItems.reduce((acc, item) => {
+        return acc + item.duration
+      }, 0)
+      const workout = {
+        name: form.name,
+        slug: slugify(form.name + " " + Date.now(), { lower: true }),
+        difficulty: "easy",
+        sequence: [...seqItems],
+        duration,
+      };
 
-    console.log(workout, 'in planner');
-  }
+      console.log(workout, "in planner");
+    }
+  };
   return (
     <View style={styles.container}>
       <FlatList
@@ -65,9 +73,7 @@ const PlannerScreen = () => {
           )}
         >
           <View>
-            <WorkoutForm
-              onSubmit={handleWorkoutSubmit}
-            />
+            <WorkoutForm onSubmit={handleWorkoutSubmit} />
           </View>
         </Modal>
       </View>

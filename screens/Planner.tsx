@@ -2,13 +2,14 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenProps, SequenceItem } from '../types';
 import ExerciseForm, { IExerciseForm } from '../components/ExerciseForm';
+import slugify from 'slugify';
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
   
   const handleFormSubmit = (form: IExerciseForm) => {
     const sequenceItem: SequenceItem = {
-      slug: form.name + Date.now(),
+      slug: slugify(form.name + ' ' +  Date.now(), {lower: true}),
       name: form.name,
       type: form.type,
       duration: Number(form.duration),

@@ -79,7 +79,9 @@ const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
                         key={selection}
                         text={selection}
                         style={styles.selection}
-                        onPressIn={() => setSelectionOn(false)}
+                        onPressIn={() => {
+                          onChange(selection)
+                          setSelectionOn(false)}}
                       />
                     ))}
                   </View>
@@ -87,6 +89,7 @@ const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
                   <TextInput
                     onPressIn={() => setSelectionOn(true)}
                     style={styles.input}
+                    value={value}
                     placeholder="Type"
                   />
                 )}

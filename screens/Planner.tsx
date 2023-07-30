@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScreenProps, SequenceItem } from "../types";
 import ExerciseForm, { IExerciseForm } from "../components/ExerciseForm";
 import slugify from "slugify";
+import ExerciseItem from "../components/ExerciseItem";
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
@@ -27,7 +28,7 @@ const PlannerScreen = () => {
       <FlatList
         data={seqItems}
         keyExtractor={(item) => item.slug}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
+        renderItem={ExerciseItem}
       />
       <ExerciseForm onSubmit={handleFormSubmit} />
     </View>

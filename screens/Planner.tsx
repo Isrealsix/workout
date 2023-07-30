@@ -1,23 +1,26 @@
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { ScreenProps } from '../types';
-import WorkoutForm, { IExerciseForm } from '../components/WorkoutForm';
+import { ScreenProps, SequenceItem } from '../types';
+import ExerciseForm, { IExerciseForm } from '../components/ExerciseForm';
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
   
   const handleFormSubmit = (form: IExerciseForm) => {
-    alert(`${form.name} - ${form.duration} ${form.reps ? '- ' + form.reps : ''}- ${form.type}`)
+    const sequenceItem: SequenceItem = {
+      slug: form.name + Date.now(),
+      name: form.name,
+      type: form.type,
+      duration: Number(form.duration),
+      reps: form.reps
+    }
+
+    console.log(form);
   }
 
   return (
     <View style={styles.container}>
-      {/* <Text>I am Planner o</Text>
-      <Button 
-        title='Go Home'
-        onPress={() => navigation.navigate('HomeScreen') }
-      /> */}
-      <WorkoutForm
+      <ExerciseForm
         onSubmit={handleFormSubmit}
       />
     </View>

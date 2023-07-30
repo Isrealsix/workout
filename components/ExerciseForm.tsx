@@ -11,7 +11,7 @@ export interface IExerciseForm {
 interface IProps {
   onSubmit: (form: IExerciseForm) => void;
 }
-const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
+const ExerciseForm: React.FC<IProps> = ({ onSubmit }) => {
   const { control, handleSubmit } = useForm();
   const [isSelectionOn, setSelectionOn] = useState(false);
   const selectionItems = ["exercise", "break", "stretch"];
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default WorkoutForm;
+export default ExerciseForm;

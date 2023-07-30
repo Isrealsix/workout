@@ -7,6 +7,7 @@ import slugify from "slugify";
 import ExerciseItem from "../components/ExerciseItem";
 import PressableText from "../components/styled/PressableText";
 import Modal from "../components/styled/Modal";
+import WorkoutForm from "../components/WorkoutForm";
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
@@ -55,7 +56,11 @@ const PlannerScreen = () => {
           )}
         >
           <View>
-            <Text>form goes here</Text>
+            <WorkoutForm
+              onSubmit={(data) => {
+                console.log(data);
+              }}
+            />
           </View>
         </Modal>
       </View>

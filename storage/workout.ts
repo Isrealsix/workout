@@ -31,3 +31,9 @@ export const clearWorkouts = async () => {
     console.error((error as Error).message);
   }
 }
+
+export const storeWorkout = async (newWorkout: Workout[number]): Promise<boolean> => {
+  const workouts = await getWorkouts();
+  await storeData(WORKOUT_KEY, [newWorkout, ...workouts]);
+  return true;
+}

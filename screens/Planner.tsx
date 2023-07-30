@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { View, Text, Button, StyleSheet, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ScreenProps, SequenceItem } from "../types";
+import { ScreenProps, SequenceItem, Workout } from "../types";
 import ExerciseForm, { IExerciseForm } from "../components/ExerciseForm";
 import slugify from "slugify";
 import ExerciseItem from "../components/ExerciseItem";
 import PressableText from "../components/styled/PressableText";
 import Modal from "../components/styled/Modal";
 import WorkoutForm, { IWorkoutForm } from "../components/WorkoutForm";
+import { storeWorkout } from "../storage/workout";
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
@@ -33,13 +34,13 @@ const PlannerScreen = () => {
     return "easy";
   };
 
-  const handleWorkoutSubmit = (form: IWorkoutForm) => {
+  const handleWorkoutSubmit = async (form: IWorkoutForm) => {
     console.log(form);
     if (seqItems.length > 0) {
       const duration = seqItems.reduce((acc, item) => {
         return acc + item.duration;
       }, 0);
-      const workout = {
+      const workout: Workout[number] = {
         name: form.name,
         slug: slugify(form.name + " " + Date.now(), { lower: true }),
         difficulty: computeDiff(seqItems.length, duration),
@@ -47,7 +48,7 @@ const PlannerScreen = () => {
         duration,
       };
 
-      console.log(workout, "in planner");
+      await storeWorkout(workout)
     }
   };
   return (
@@ -82,9 +83,10 @@ const PlannerScreen = () => {
           {({handleClose}) => (
             <View>
               <WorkoutForm
-                onSubmit={(data) => {
-                  handleWorkoutSubmit(data);
+                onSubmit={async (data) => {
+                  await handleWorkoutSubmit(data);
                   handleClose();
+                  navigation.navigate('HomeScreen');
                 }}
               />
             </View>

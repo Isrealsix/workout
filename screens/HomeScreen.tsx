@@ -2,13 +2,14 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import MontserratText from "../components/styled/MontserratText";
 import PressableItem from "../utils/PressableItem";
 import { useWorkouts } from "../hooks/useWorkouts";
+import ThemeText from "../components/styled/Text";
 
 const HomeScreen = () => {
   const workouts = useWorkouts();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>New Workoutas</Text>
+      <ThemeText style={styles.header}>New Workouts</ThemeText>
       <MontserratText style={{ fontSize: 30 }}>New Workout</MontserratText>
       <FlatList
         data={workouts}

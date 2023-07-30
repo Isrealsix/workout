@@ -1,14 +1,15 @@
-import { Text, Pressable, PressableProps } from "react-native";
+import { Text, Pressable, PressableProps, StyleProp, TextStyle } from "react-native";
 
-interface IProps extends PressableProps {
+export interface IPressableProps extends PressableProps {
   text: string
+  style?: StyleProp<TextStyle>
 }
-const PressableText: React.FC<IProps> = (props) => {
+const PressableText: React.FC<IPressableProps> = (props) => {
   return (
     <Pressable
       {...props}
     >
-      <Text style={{textDecorationLine: 'underline'}}>
+      <Text style={[props.style, {textDecorationLine: 'underline'}]}>
         {props.text}
       </Text>
     </Pressable>

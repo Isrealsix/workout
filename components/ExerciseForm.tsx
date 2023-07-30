@@ -28,6 +28,7 @@ const ExerciseForm: React.FC<IProps> = ({ onSubmit }) => {
             render={({ field: { onChange, value } }) => (
               <TextInput
                 onChangeText={onChange}
+                placeholderTextColor={"rgba(0,0,0,0.4)"}
                 value={value}
                 style={styles.input}
                 placeholder="Name"
@@ -43,6 +44,7 @@ const ExerciseForm: React.FC<IProps> = ({ onSubmit }) => {
             render={({ field: { onChange, value } }) => (
               <TextInput
                 onChangeText={onChange}
+                placeholderTextColor={"rgba(0,0,0,0.4)"}
                 value={value}
                 style={styles.input}
                 placeholder="Duration"
@@ -57,6 +59,7 @@ const ExerciseForm: React.FC<IProps> = ({ onSubmit }) => {
             render={({ field: { onChange, value } }) => (
               <TextInput
                 onChangeText={onChange}
+                placeholderTextColor={"rgba(0,0,0,0.4)"}
                 value={value}
                 style={styles.input}
                 placeholder="Repetitions"
@@ -88,6 +91,7 @@ const ExerciseForm: React.FC<IProps> = ({ onSubmit }) => {
                   <TextInput
                     onPressIn={() => setSelectionOn(true)}
                     style={styles.input}
+                    placeholderTextColor={"rgba(0,0,0,0.4)"}
                     value={value}
                     placeholder="Type"
                   />

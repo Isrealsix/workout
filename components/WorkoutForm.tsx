@@ -23,7 +23,8 @@ const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
             onChangeText={onChange}
             value={value}
             style={styles.input}
-            placeholder="Workout name"
+            placeholderTextColor={"rgba(0,0,0,0.4)"}
+            placeholder="Workout Name"
           />
         )}
       />

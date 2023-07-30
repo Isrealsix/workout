@@ -7,13 +7,13 @@ import slugify from "slugify";
 import ExerciseItem from "../components/ExerciseItem";
 import PressableText from "../components/styled/PressableText";
 import Modal from "../components/styled/Modal";
-import WorkoutForm from "../components/WorkoutForm";
+import WorkoutForm, { IWorkoutForm } from "../components/WorkoutForm";
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
   const [seqItems, setSeqItems] = useState<SequenceItem[]>([]);
 
-  const handleFormSubmit = (form: IExerciseForm) => {
+  const handleExerciseSubmit = (form: IExerciseForm) => {
     const sequenceItem: SequenceItem = {
       slug: slugify(form.name + " " + Date.now(), { lower: true }),
       name: form.name,
@@ -26,6 +26,15 @@ const PlannerScreen = () => {
     setSeqItems([...seqItems, sequenceItem]);
   };
 
+  const handleWorkoutSubmit = (form: IWorkoutForm) => {
+    console.log(form);
+    const workout = {
+      name: form.name,
+      slug: slugify(form.name + " " + Date.now(), { lower: true })
+    }
+
+    console.log(workout, 'in planner');
+  }
   return (
     <View style={styles.container}>
       <FlatList
@@ -44,7 +53,7 @@ const PlannerScreen = () => {
           </ExerciseItem>
         )}
       />
-      <ExerciseForm onSubmit={handleFormSubmit} />
+      <ExerciseForm onSubmit={handleExerciseSubmit} />
       <View>
         <Modal
           activator={({ handleOpen }) => (
@@ -57,9 +66,7 @@ const PlannerScreen = () => {
         >
           <View>
             <WorkoutForm
-              onSubmit={(data) => {
-                console.log(data);
-              }}
+              onSubmit={handleWorkoutSubmit}
             />
           </View>
         </Modal>

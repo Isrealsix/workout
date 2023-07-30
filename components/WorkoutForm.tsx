@@ -5,6 +5,8 @@ import { Controller, useForm } from "react-hook-form";
 export interface IExerciseForm {
   name: string;
   duration: string;
+  type: string;
+  reps?: number;
 }
 interface IProps {
   onSubmit: (form: IExerciseForm) => void;
@@ -43,6 +45,33 @@ const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
               value={value}
               style={styles.input}
               placeholder="Duration"
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="reps"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              onChangeText={onChange}
+              value={value}
+              style={styles.input}
+              placeholder="Repetitions"
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          name="type"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              onChangeText={onChange}
+              value={value}
+              style={styles.input}
+              placeholder="Type"
             />
           )}
         />

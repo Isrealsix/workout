@@ -27,13 +27,29 @@ const WorkoutForm: React.FC<IProps> = ({ onSubmit }) => {
               onChangeText={onChange}
               value={value}
               style={styles.input}
+              placeholder="Name"
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          name="duration"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              onChangeText={onChange}
+              value={value}
+              style={styles.input}
+              placeholder="Duration"
             />
           )}
         />
         <PressableText
           text="Submit"
           onPress={handleSubmit((data) => {
-            onSubmit(data as IExerciseForm)
+            onSubmit(data as IExerciseForm);
             console.log(data);
           })}
         />
@@ -49,10 +65,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   input: {
-    height: 40,
-    margin: 12,
+    margin: 2,
     borderWidth: 1,
-    padding: 10,
+    height: 30,
+    padding: 5,
+    borderRadius: 5,
+    borderColor: "rgba(0,0,0,0.4)",
   },
 });
 

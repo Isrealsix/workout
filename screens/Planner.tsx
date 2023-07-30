@@ -7,7 +7,7 @@ const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
   
   const handleFormSubmit = (form: IExerciseForm) => {
-    alert(`${form.name}`)
+    alert(`${form.name} - ${form.duration}`)
   }
 
   return (

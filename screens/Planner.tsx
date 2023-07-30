@@ -5,6 +5,7 @@ import { ScreenProps, SequenceItem } from "../types";
 import ExerciseForm, { IExerciseForm } from "../components/ExerciseForm";
 import slugify from "slugify";
 import ExerciseItem from "../components/ExerciseItem";
+import PressableText from "../components/styled/PressableText";
 
 const PlannerScreen = () => {
   const navigation = useNavigation<ScreenProps>();
@@ -28,7 +29,16 @@ const PlannerScreen = () => {
       <FlatList
         data={seqItems}
         keyExtractor={(item) => item.slug}
-        renderItem={ExerciseItem}
+        renderItem={({item, index}) => <ExerciseItem item={item}>
+          <PressableText
+            text="Remove"
+            onPressIn={() => {
+              const items = [...seqItems];
+              items.splice(index, 1);
+              setSeqItems(items);
+            }}
+          />
+        </ExerciseItem>}
       />
       <ExerciseForm onSubmit={handleFormSubmit} />
     </View>

@@ -5,13 +5,21 @@ import PressableText from "./PressableText";
 interface IActivator {
   handleOpen: () => void;
 }
+
+interface IChildren {
+  handleOpen: () => void;
+  handleClose: () => void
+}
 interface IProps {
   activator?: React.FC<IActivator>;
-  children: React.ReactNode
+  children: React.FC<IChildren>
 }
 
 const Modal: React.FC<IProps> = ({ activator: Activator, children }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleOpen = () => setIsModalVisible(true);
+  const handleClose = () => setIsModalVisible(false);
   return (
     <View>
       <DefaultModal
@@ -21,19 +29,19 @@ const Modal: React.FC<IProps> = ({ activator: Activator, children }) => {
       >
         <View style={styles.centerView}>
           <View style={styles.contentView}>
-            {children}
+            {children({handleOpen, handleClose})}
           </View>
           {/* <Text style={{ marginBottom: 100 }}>Hello There!</Text> */}
           <PressableText
-            onPress={() => setIsModalVisible(false)}
+            onPress={handleClose}
             text="Close"
           />
         </View>
       </DefaultModal>
       {Activator ? (
-        <Activator handleOpen={() => setIsModalVisible(true)} />
+        <Activator handleOpen={handleOpen} />
       ) : (
-        <PressableText onPress={() => setIsModalVisible(true)} text="Open" />
+        <PressableText onPress={handleOpen} text="Open" />
       )}
     </View>
   );

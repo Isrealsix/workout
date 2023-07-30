@@ -61,18 +61,20 @@ const WorkoutDetailScreen = ({ route }: IProps) => {
             <PressableText onPress={handleOpen} text="Check Sequence" />
           )}
         >
-          <View>
-            {workout.sequence.map((item, idx) => (
-              <View key={item.slug} style={styles.sequenceItem}>
-                <Text>
-                  {item.name} | {item.type} | {formatSec(item.duration)}
-                </Text>
-                {idx !== workout.sequence.length - 1 && (
-                  <FontAwesome name="arrow-down" size={24} />
-                )}
-              </View>
-            ))}
-          </View>
+          {() => (
+            <View>
+              {workout.sequence.map((item, idx) => (
+                <View key={item.slug} style={styles.sequenceItem}>
+                  <Text>
+                    {item.name} | {item.type} | {formatSec(item.duration)}
+                  </Text>
+                  {idx !== workout.sequence.length - 1 && (
+                    <FontAwesome name="arrow-down" size={24} />
+                  )}
+                </View>
+              ))}
+            </View>
+          )}
         </Modal>
       </WorkoutItem>
       <View style={styles.wrapper}>
@@ -155,10 +157,10 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     borderRadius: 10,
-    borderColor: 'rgba(0,0,0,0.1)',
-    backgroundColor: '#fff',
+    borderColor: "rgba(0,0,0,0.1)",
+    backgroundColor: "#fff",
     borderWidth: 1,
-    padding: 10
-  }
+    padding: 10,
+  },
 });
 export default WorkoutDetailScreen;

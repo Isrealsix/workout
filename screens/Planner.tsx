@@ -28,17 +28,17 @@ const PlannerScreen = () => {
 
   const computeDiff = (exercisesCount: number, workoutDuration: number) => {
     const intensity = workoutDuration / exercisesCount;
-    if (intensity <= 60) return 'hard';
-    else if (intensity <= 100) return 'normal';
-    return 'easy';
-  }
+    if (intensity <= 60) return "hard";
+    else if (intensity <= 100) return "normal";
+    return "easy";
+  };
 
   const handleWorkoutSubmit = (form: IWorkoutForm) => {
     console.log(form);
     if (seqItems.length > 0) {
       const duration = seqItems.reduce((acc, item) => {
-        return acc + item.duration
-      }, 0)
+        return acc + item.duration;
+      }, 0);
       const workout = {
         name: form.name,
         slug: slugify(form.name + " " + Date.now(), { lower: true }),
@@ -79,9 +79,16 @@ const PlannerScreen = () => {
             />
           )}
         >
-          <View>
-            <WorkoutForm onSubmit={handleWorkoutSubmit} />
-          </View>
+          {({handleClose}) => (
+            <View>
+              <WorkoutForm
+                onSubmit={(data) => {
+                  handleWorkoutSubmit(data);
+                  handleClose();
+                }}
+              />
+            </View>
+          )}
         </Modal>
       </View>
     </View>
